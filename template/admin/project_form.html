@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% if form.instance.pk %}Update{% else %}Create{% endif %} Project</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .container {
+            margin-top: 50px;
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            margin-bottom: 20px;
+            color: #343a40;
+        }
+        .form-control {
+            border-radius: 5px;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>{% if form.instance.pk %}Update{% else %}Create{% endif %} Project</h1>
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="user">User:</label>
+                {{ form.user }}
+            </div>
+            <div class="form-group">
+                <label for="task_name">Task Name:</label>
+                {{ form.task_name }} 
+            </div>
+            <div class="form-group">
+                <label for="task_description">Task Description:</label>
+                {{ form.task_description }}
+            </div>
+            <div class="form-group">
+                <label for="task_priority">Task Priority:</label>
+                {{ form.task_priority }}
+            </div>
+            <button type="submit" class="btn btn-primary" style="text-align: center;">Save</button>
+        </form>
+        <button class="btn btn-secondary mt-3"><a href="{% url 'project_list' %}" style="color: #f8f9fa;">Back to Project List</a></button>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+

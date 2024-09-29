@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirm Delete</title>
+</head>
+<body>
+    <h1>Are you sure you want to delete this holiday?</h1>
+    <p>Holiday: {{ holiday.reason }} from {{ holiday.start_date }} to {{ holiday.end_date }}</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Confirm Delete</button>
+    </form>
+    <a href="{% url 'holiday_list' %}">Cancel</a>
+</body>
+</html>

@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Projects</title>
+    <link rel="stylesheet" href="{% static 'project_view.css' %}">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'profile_view.css' %}">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="form-box">
+            <h2>Your Projects</h2>
+            <div class="project-list">
+                {% if user_projects %}
+                    {% for project in user_projects %}
+                        <div class="project-item">
+                            <h3>{{ project.task_name }}</h3>
+                            <p><strong>Priority:</strong> {{ project.get_task_priority_display }}</p>
+                            <p>{{ project.task_description }}</p>
+                            <p><strong>Created At:</strong> {{ project.created_at }}</p>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <p>No projects available.</p>
+                {% endif %}
+                <button class="btn btn-info w-100"><a href="{% url 'dashboard' %}" style="text-decoration: none;color: aliceblue;">Dashboard</a></button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,169 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #f8f9fa;
+    color: #212529;
+}
+
+.holiday-trending-container {
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 36px;
+    font-weight: bold;
+    color: #343a40;
+}
+
+.holiday-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.holiday-grid .card {
+    background-color: #fffbfb;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    width: calc(33.333% - 20px); /* Three items per row with gaps */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.holiday-grid .card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.card-header {
+    background-color: #343a40;
+    color: #181717;
+    padding: 15px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.card-body {
+    padding: 15px;
+}
+
+.card-body p {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.card-body p strong {
+    color: #495057;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #343a40;
+    padding: 10px 0;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+}
+
+.menu {
+    list-style-type: none;
+    display: flex;
+    justify-content: space-around;
+    padding: 0;
+}
+
+.menu li {
+    display: inline-block;
+}
+
+.menu li a {
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 24px;
+}
+
+.icon {
+    font-size: 24px;
+}
+/* Add these styles to your existing holiday.css */
+
+/* Add these styles to your existing holiday.css */
+
+.holiday-trending-container {
+    padding: 20px;
+}
+
+.card-columns {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Gap between cards */
+}
+
+.card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.card-header {
+    background-color: #343a40;
+    color: #000000;
+    padding: 15px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.card-body {
+    padding: 15px;
+    background-color: #ffffff;
+    color: #000000;
+}
+
+.card-body p {
+    margin-bottom: 10px;
+}
+.holiday-trending-container {
+    padding: 20px;
+}
+
+.holiday-card {
+    margin-bottom: 20px;
+}
+
+.holiday-card .card-header {
+    background-color: #343a40;
+    color: #ffffff;
+    padding: 15px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.holiday-card .card-body {
+    padding: 15px;
+    background-color: #ffffff;
+    color: #000000;
+}
+
+.card-columns {
+    column-count: 1; /* Adjust this value to control the number of columns */
+    column-gap: 20px; /* Gap between columns */
+}
+
+.card {
+    display: inline-block;
+    width: 100%;
+}
+

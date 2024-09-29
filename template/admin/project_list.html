@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project List</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="mb-4">Project List</h1>
+        <a href="{% url 'project_create' %}" class="btn btn-success mb-3">Create New Project</a>
+        <div class="row">
+            {% for project in projects %}
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ project.task_name }}</h5>
+                            <p class="card-text">{{ project.task_description }}</p>
+                            <p class="card-text">
+                                <strong>Priority:</strong> {{ project.get_task_priority_display }}<br>
+                                <small>Created at: {{ project.created_at }}</small>
+                            </p>
+                            <a href="{% url 'project_update' project.pk %}" class="btn btn-warning">Edit</a>
+                            <a href="{% url 'project_delete' project.pk %}" class="btn btn-danger">Delete</a>
+                            <a href="{% url 'admin_dashboard' %}" class="btn btn-info">Dashboard</a>
+                        </div>
+                    </div>
+                </div>
+            {% empty %}
+                <p>No projects found.</p>
+            {% endfor %}
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+

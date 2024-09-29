@@ -1,0 +1,136 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CQT</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <style>
+        .card {
+            padding: 20px;
+            margin: 10px;
+            width: 45%;
+            text-align: center;
+        }
+
+        .attendance {
+            margin-bottom: 20px;
+        }
+
+        .greeting {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        h3 {
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header text-center my-4">
+            <img src="{% static 'logo/Asset 1.png' %}" alt="Profile Picture" class="img-fluid" style="max-width: 150px;">
+            <h2>CQT</h2>
+        </div>
+
+        <!-- Greeting Section -->
+        <div class="greeting text-center mb-5">
+            <h3>Good Morning</h3>
+            <p>Today Attendance</p>
+        </div>
+
+        <!-- Attendance Check In and Check Out Section -->
+        <div class="attendance d-flex justify-content-between">
+            <!-- Check In -->
+            <div class="card">
+                <h4>Check In</h4>
+                <form method="post" action="{% url 'check_in' %}" onsubmit="handleFormSubmit(event, 'checkInButton', 'currentCheckInTime')">
+                    {% csrf_token %}
+                    <button id="checkInButton" type="submit" class="btn btn-primary mt-2">Check In</button>
+                    <p id="checkInTime">Current Check-In Time: <span id="currentCheckInTime"></span></p>
+                    {% if error %}
+                    <p style="color: red;">{{ error }}</p>
+                    {% endif %}
+                </form>
+            </div>
+
+            <!-- Check Out -->
+            <div class="card">
+                <h4>Check Out</h4>
+                <form method="post" action="{% url 'check_out' %}" onsubmit="handleFormSubmit(event, 'checkOutButton', 'currentCheckOutTime')">
+                    {% csrf_token %}
+                    <button id="checkOutButton" type="submit" class="btn btn-primary mt-2">Check Out</button>
+                    <p id="checkOutTime">Current Check-Out Time: <span id="currentCheckOutTime"></span></p>
+                    {% if error %}
+                    <p style="color: red;">{{ error }}</p>
+                    {% endif %}
+                </form>
+            </div>
+        </div>
+
+        <!-- Break Section -->
+        <div class="attendance d-flex justify-content-between mt-4">
+            <!-- Break In -->
+            <div class="card">
+                <h4>Break In</h4>
+                <form method="post" action="{% url 'break_in' %}" onsubmit="handleFormSubmit(event, 'breakInButton', 'currentBreakInTime')">
+                    {% csrf_token %}
+                    <button id="breakInButton" type="submit" class="btn btn-primary mt-2">Break In</button>
+                    <p id="breakInTime">Current Break In Time: <span id="currentBreakInTime"></span></p>
+                    {% if error %}
+                    <p style="color: red;">{{ error }}</p>
+                    {% endif %}
+                </form>
+            </div>
+
+            <!-- Break Out -->
+            <div class="card">
+                <h4>Break Out</h4>
+                <form method="post" action="{% url 'break_out' %}" onsubmit="handleFormSubmit(event, 'breakOutButton', 'currentBreakOutTime')">
+                    {% csrf_token %}
+                    <button id="breakOutButton" type="submit" class="btn btn-primary mt-2">Break Out</button>
+                    <p id="breakOutTime">Current Break Out Time: <span id="currentBreakOutTime"></span></p>
+                    {% if error %}
+                    <p style="color: red;">{{ error }}</p>
+                    {% endif %}
+                </form>
+            </div>
+        </div>
+
+        <!-- Dashboard Link -->
+        <div class="text-center mt-4">
+            <a href="{% url 'dashboard' %}" class="btn btn-success">Dashboard</a>
+        </div>
+    </div>
+
+    <!-- JavaScript for Handling Button Disable and Time Display -->
+    <script>
+        function handleFormSubmit(event, buttonId, timeId) {
+            event.preventDefault();  // Prevent default form submission
+
+            var button = document.getElementById(buttonId);
+            var timeSpan = document.getElementById(timeId);
+
+            button.disabled = true;  // Disable the button
+            button.style.display = "none";  // Hide the button
+
+            var now = new Date();
+            var timeString = now.toTimeString().split(' ')[0];  // Get current time in HH:MM:SS format
+            timeSpan.innerText = timeString;
+
+            setTimeout(function () {
+                event.target.submit();  // Submit the form after 10 seconds
+            }, 10000);  // Delays submission for 10 seconds
+        }
+    </script>
+</body>
+
+</html>
